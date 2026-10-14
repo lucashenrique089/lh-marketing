@@ -1,0 +1,387 @@
+/* =========================================================
+   SITE LUCAS HENRIQUE · MARKETING COM DADOS
+   As cores e fontes seguem o manual de marca.
+   ========================================================= */
+
+/* ---------- 1. VARIÁVEIS (tokens da marca) ----------
+   Mudou uma cor aqui, muda no site inteiro. */
+:root {
+    --marinho: #0B1F3A;
+    --marinho-2: #142B4D;   /* um tom acima, para áreas dentro do fundo escuro */
+    --azul: #2F6BFF;
+    --amarelo: #FFC727;
+    --cinza: #6B7684;
+    --cinza-barra: #D8DEE7;
+    --nevoa: #EEF1F5;
+    --branco: #FFFFFF;
+    --texto: #1E2F47;
+
+    --fonte: 'Poppins', system-ui, sans-serif;
+    --fonte-destaque: 'Lora', Georgia, serif;
+
+    --raio: 14px;
+    --largura: 1120px;
+}
+
+/* ---------- 2. RESET E BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; } /* compensa o cabeçalho fixo ao clicar no menu */
+body { font-family: var(--fonte); color: var(--texto); background: var(--branco); line-height: 1.65; font-size: 17px; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 4px; }
+
+.container { width: min(var(--largura), 100% - 40px); margin-inline: auto; }
+.container-estreito { width: min(760px, 100% - 40px); }
+
+h1, h2, h3 { color: var(--marinho); line-height: 1.15; font-weight: 700; }
+h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.25rem; }
+
+/* ---------- 3. BOTÕES E LINKS ---------- */
+.btn {
+    display: inline-block;
+    background: var(--amarelo);
+    color: var(--marinho);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(255, 199, 39, .35); }
+.btn-pequeno { padding: 10px 18px; font-size: .9rem; }
+.btn-cheio { width: 100%; }
+
+.link-sublinhado {
+    font-weight: 500;
+    color: var(--marinho);
+    text-decoration: underline;
+    text-decoration-color: var(--amarelo);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+}
+
+/* ---------- 4. CABEÇALHO ---------- */
+.topo {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--nevoa);
+}
+.topo-inner { display: flex; align-items: center; gap: 32px; height: 72px; }
+.topo-logo img { width: 190px; height: auto; }
+.topo-nav { display: flex; gap: 26px; margin-left: auto; }
+.topo-nav a { text-decoration: none; font-size: .95rem; font-weight: 500; color: var(--cinza); }
+.topo-nav a:hover { color: var(--marinho); }
+
+/* ---------- 5. HERO ---------- */
+.hero { padding: 72px 0 96px; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+.hero-sub { font-size: 1.12rem; color: var(--cinza); margin: 22px 0 32px; max-width: 34em; }
+.hero-acoes { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+/* O cartão do diagnóstico */
+.diagnostico {
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 26px 26px 22px;
+    box-shadow: 0 24px 60px rgba(11, 31, 58, .12);
+    border: 1px solid var(--nevoa);
+}
+.diag-titulo { font-weight: 500; font-size: .95rem; color: var(--marinho); }
+.diag-titulo span { color: var(--cinza); font-weight: 400; }
+.diag-grafico { margin: 14px 0 6px; overflow: visible; }
+.diag-grafico .eixo { stroke: var(--marinho); stroke-width: 2; }
+.diag-grafico .dias text { font-family: var(--fonte); font-size: 12px; fill: var(--cinza); text-anchor: middle; }
+
+/* As barras: cinza, e só o dado importante em amarelo (regra do manual) */
+.barras rect {
+    fill: var(--cinza-barra);
+    transform-box: fill-box;          /* faz o transform usar a própria barra como referência */
+    transform-origin: bottom;          /* cresce de baixo para cima */
+    transform: scaleY(var(--h));       /* --h vem do HTML: a altura de cada barra */
+    animation: crescer .9s cubic-bezier(.2, .8, .2, 1) both;
+}
+.barras rect.destaque { fill: var(--amarelo); }
+.barras rect:nth-child(2) { animation-delay: .06s; }
+.barras rect:nth-child(3) { animation-delay: .12s; }
+.barras rect:nth-child(4) { animation-delay: .18s; }
+.barras rect:nth-child(5) { animation-delay: .24s; }
+.barras rect:nth-child(6) { animation-delay: .30s; }
+.barras rect:nth-child(7) { animation-delay: .36s; }
+@keyframes crescer { from { transform: scaleY(0); } }
+
+/* A lupa percorre as barras e para em cima do sábado */
+.lupa-anel { fill: rgba(255, 255, 255, .25); stroke: var(--marinho); stroke-width: 7; }
+.lupa-cabo { stroke: var(--marinho); stroke-width: 9; stroke-linecap: round; }
+.lupa { transform: translate(321px, 46px); animation: analisar 2.2s 1s ease-in-out both; }
+@keyframes analisar {
+    0%   { transform: translate(41px, 150px); opacity: 0; }
+    15%  { opacity: 1; }
+    55%  { transform: translate(209px, 120px); }
+    100% { transform: translate(321px, 46px); }
+}
+
+.diag-insight {
+    font-size: .95rem; color: var(--texto);
+    border-left: 4px solid var(--amarelo);
+    padding: 4px 0 4px 14px; margin-top: 12px;
+    animation: aparecer .5s 3.1s both;
+}
+.diag-insight strong { display: block; color: var(--marinho); font-size: 1.05rem; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- 6. DORES ---------- */
+.dores { background: var(--nevoa); padding: 88px 0; }
+.dores h2 { max-width: 22em; }
+.dores-lista {
+    list-style: none;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 18px 48px; margin-top: 36px;
+}
+.dores-lista li {
+    font-family: var(--fonte-destaque); font-style: italic; font-weight: 500;
+    font-size: 1.3rem; line-height: 1.5; color: var(--marinho);
+    padding-left: 22px; position: relative;
+}
+/* o "ponto amarelo" da marca como marcador */
+.dores-lista li::before {
+    content: ""; position: absolute; left: 0; top: .62em;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--amarelo);
+}
+
+/* ---------- 7. SEÇÕES (padrão) ---------- */
+.secao { padding: 96px 0; }
+.secao-intro { color: var(--cinza); font-size: 1.08rem; margin-top: 12px; max-width: 36em; }
+.secao-nevoa { background: var(--nevoa); }
+.secao-escura { background: var(--marinho); color: #C9D2DF; }
+.secao-escura h2, .secao-escura h3 { color: var(--branco); }
+.secao-escura .secao-intro { color: #AEB8C6; }
+
+/* ---------- 8. SERVIÇOS (linhas, não cards) ---------- */
+.servicos { margin-top: 48px; border-top: 2px solid var(--marinho); }
+.servico {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 0.9fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--nevoa);
+}
+.servico h3 { font-size: 1.5rem; }
+.servico-resolve { color: var(--cinza); margin-top: 10px; }
+.servico-inclui { list-style: none; }
+.servico-inclui li { padding: 6px 0 6px 28px; position: relative; font-size: .97rem; }
+.servico-inclui li::before {      /* mini barras da marca como "check" */
+    content: ""; position: absolute; left: 0; top: 13px;
+    width: 14px; height: 10px;
+    background: linear-gradient(to right, var(--azul) 0 4px, transparent 4px 5px, var(--azul) 5px 9px, transparent 9px 10px, var(--amarelo) 10px 14px);
+    clip-path: polygon(0 60%, 4px 60%, 4px 30%, 9px 30%, 9px 0, 14px 0, 14px 100%, 0 100%);
+}
+.servico-para { font-size: .95rem; background: var(--nevoa); border-radius: var(--raio); padding: 16px 18px; align-self: start; }
+.servico-para strong { display: block; color: var(--marinho); }
+
+/* ---------- 9. COMO FUNCIONA ---------- */
+.etapas {
+    list-style: none; counter-reset: etapa;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 28px; margin-top: 52px;
+}
+/* Cada etapa é um bloco com fundo um tom acima do marinho */
+.etapas li {
+    counter-increment: etapa;          /* soma 1 no contador a cada etapa */
+    background: var(--marinho-2);
+    border-radius: 16px;
+    padding: 28px 24px;
+}
+.etapas li::before {               /* número da etapa gerado pelo CSS (counter) */
+    content: counter(etapa);
+    display: grid; place-items: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--amarelo); color: var(--marinho);
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 18px;
+}
+.etapas h3 { margin-bottom: 8px; }
+.etapas p { font-size: .97rem; line-height: 1.6; }
+
+/* ---------- 10. TRABALHOS ---------- */
+.trabalhos-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; }
+.trabalho-texto h3 { font-size: 1.6rem; margin: 22px 0 10px; }
+.trabalho-texto p { color: var(--cinza); }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 26px; }
+.tags li { font-size: .82rem; font-weight: 500; background: var(--nevoa); color: var(--marinho); padding: 5px 12px; border-radius: 20px; }
+
+.navegador { border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(11, 31, 58, .14); border: 1px solid var(--nevoa); }
+.navegador-barra { background: var(--nevoa); padding: 10px 14px; display: flex; align-items: center; gap: 6px; }
+.navegador-barra i { width: 10px; height: 10px; border-radius: 50%; background: var(--cinza-barra); }
+.navegador-barra span { margin-left: 12px; font-size: .75rem; color: var(--cinza); background: var(--branco); padding: 2px 12px; border-radius: 6px; }
+/* Truque para "encolher" o site dentro da moldura: o iframe tem 1280px e é reduzido com scale */
+.navegador-tela { height: 360px; overflow: hidden; position: relative; background: var(--nevoa); }
+.navegador-tela iframe { width: 1280px; height: 800px; border: 0; transform: scale(.48); transform-origin: 0 0; pointer-events: none; }
+
+/* ---------- 11. SOBRE ---------- */
+.sobre-grid { display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center; }
+.sobre-foto { aspect-ratio: 1; border-radius: 24px; background: var(--branco); display: grid; place-items: center; padding: 50px; }
+.sobre-foto img { width: 100%; height: 100%; object-fit: cover; }
+.sobre-grid p { margin-top: 16px; max-width: 38em; }
+
+/* ---------- 12. DÚVIDAS ---------- */
+#duvidas h2 { margin-bottom: 28px; }
+details { border-bottom: 1px solid var(--nevoa); }
+summary {
+    cursor: pointer; list-style: none;
+    font-weight: 500; font-size: 1.08rem; color: var(--marinho);
+    padding: 20px 40px 20px 0; position: relative;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {                   /* o "+" que vira "−" quando abre */
+    content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    font-size: 1.5rem; color: var(--azul); font-weight: 400;
+}
+details[open] summary::after { content: "−"; }
+details p { padding: 0 0 22px; color: var(--cinza); max-width: 40em; }
+
+/* ---------- 13. CONTATO ---------- */
+.contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.contato-alt { margin-top: 24px; }
+.contato-alt a { color: var(--amarelo); }
+.form { background: var(--branco); color: var(--texto); border-radius: 20px; padding: 32px; }
+.campo { margin-bottom: 18px; }
+.campo label { display: block; font-weight: 500; font-size: .92rem; color: var(--marinho); margin-bottom: 6px; }
+.opcional { color: var(--cinza); font-weight: 400; }
+.campo input, .campo select, .campo textarea {
+    width: 100%; font: inherit; font-size: 16px; /* 16px evita zoom automático no iPhone */
+    padding: 12px 14px; border: 2px solid var(--nevoa); border-radius: 10px;
+    background: var(--branco); color: var(--texto);
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--azul); outline: none; }
+.campo [aria-invalid="true"] { border-color: #D93025; }
+.campo-check { display: flex; gap: 10px; align-items: flex-start; font-size: .85rem; color: var(--cinza); margin: 6px 0 16px; }
+.campo-check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--azul); flex-shrink: 0; }
+.campo-check a { color: var(--azul); }
+.form-erro { color: #D93025; font-size: .9rem; min-height: 1.2em; margin-bottom: 8px; }
+
+/* ---------- 14. RODAPÉ ---------- */
+.rodape { background: #081629; color: #AEB8C6; padding: 32px 0; font-size: .9rem; }
+.rodape-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+/* ---------- 15. WHATSAPP FLUTUANTE ---------- */
+.whats-flutuante {
+    position: fixed; right: 20px; bottom: 20px; z-index: 20;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: var(--branco);
+    display: grid; place-items: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+}
+
+/* =========================================================
+   17. EFEITOS (controlados pelo script.js)
+   ========================================================= */
+
+/* --- Barra de progresso de leitura --- */
+.progresso {
+    position: fixed; top: 0; left: 0; z-index: 30;
+    height: 3px; width: 100%;
+    background: var(--amarelo);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--progresso, 0));   /* o JS muda --progresso de 0 a 1 */
+}
+
+/* --- Cabeçalho ao rolar: fica mais baixo e ganha sombra --- */
+.topo { transition: box-shadow .25s; }
+.topo-inner { transition: height .25s; }
+.topo.rolado { box-shadow: 0 6px 24px rgba(11, 31, 58, .08); }
+.topo.rolado .topo-inner { height: 60px; }
+
+/* --- Revelar na rolagem, com os filhos em cascata ---
+   Só esconde quando html tem a classe "js" (o JS está ligado). */
+.js [data-revelar] > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .2, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);   /* --i = posição do filho (0, 1, 2...) */
+}
+.js [data-revelar].visivel > * { opacity: 1; transform: none; }
+
+
+/* --- Brilho que segue o cursor (linhas de serviço) ---
+   O JS informa a posição do mouse em --x e --y. */
+.brilho { position: relative; }
+.brilho::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(47, 107, 255, .10), transparent 70%);
+    opacity: 0; transition: opacity .3s;
+}
+.brilho:hover::before { opacity: 1; }
+.secao-escura .brilho::before { background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(255, 199, 39, .10), transparent 70%); }
+.servico.brilho { border-radius: var(--raio); padding-inline: 16px; margin-inline: -16px; }
+
+/* --- Seção "Não sabe por onde começar?" --- */
+.escolher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.escolher-opcoes { display: grid; gap: 12px; margin-top: 28px; }
+.opcao {
+    text-align: left; font: 500 1rem var(--fonte); color: var(--marinho);
+    background: var(--branco); border: 2px solid transparent; border-radius: 12px;
+    padding: 16px 20px 16px 48px; cursor: pointer; position: relative;
+    transition: border-color .2s, transform .2s;
+}
+.opcao::before {                 /* bolinha de seleção */
+    content: ""; position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--cinza-barra);
+    transition: background .2s, border-color .2s;
+}
+.opcao:hover { transform: translateX(4px); }
+.opcao[aria-pressed="true"] { border-color: var(--azul); }
+.opcao[aria-pressed="true"]::before { background: var(--amarelo); border-color: var(--amarelo); }
+
+.recomendacao {
+    background: var(--marinho); color: #C9D2DF; border-radius: 20px;
+    padding: 36px; min-height: 260px; display: flex; flex-direction: column; justify-content: center;
+}
+.recomendacao-vazia { color: #8794A6; font-family: var(--fonte-destaque); font-style: italic; font-size: 1.2rem; }
+.recomendacao h3 { color: var(--branco); font-size: 1.6rem; margin-bottom: 10px; }
+.recomendacao p { margin-bottom: 22px; }
+.recomendacao .rotulo { color: var(--amarelo); font-weight: 500; font-size: .9rem; margin-bottom: 6px; }
+.recomendacao .btn { align-self: flex-start; }
+.recomendacao > * { animation: trocar .35s ease both; }    /* aparece suave a cada troca */
+@keyframes trocar { from { opacity: 0; transform: translateY(8px); } }
+
+/* --- Contato: brilho azul no fundo, inspirado na referência --- */
+#contato { background: radial-gradient(700px 360px at 85% 10%, rgba(47, 107, 255, .28), transparent 70%), var(--marinho); }
+
+/* ---------- 16. RESPONSIVO ---------- */
+@media (max-width: 960px) {
+    .topo-nav { display: none; }                 /* no celular, fica só logo + botão */
+    .topo-inner { justify-content: space-between; }
+    .hero { padding: 40px 0 64px; }
+    .hero-grid, .trabalhos-grid, .contato-grid, .escolher-grid { grid-template-columns: 1fr; gap: 40px; }
+    .recomendacao { min-height: 0; }
+    .servico { grid-template-columns: 1fr; gap: 18px; }
+    .etapas { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dores-lista { grid-template-columns: 1fr; }
+    .sobre-grid { grid-template-columns: 1fr; }
+    .sobre-foto { max-width: 200px; padding: 36px; }
+    .secao { padding: 72px 0; }
+}
+@media (max-width: 560px) {
+    body { font-size: 16px; }
+    .topo-logo img { width: 150px; }
+    .etapas { grid-template-columns: 1fr; }
+    .form { padding: 22px; }
+    .navegador-tela { height: 240px; }
+    .navegador-tela iframe { transform: scale(.3); }
+}
+
+/* Quem desativou animações no sistema vê tudo já no lugar */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js [data-revelar] > * { opacity: 1; transform: none; }
+}

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Henrique | Marketing com Dados para pequenos negócios</title>
+
+    <!-- SEO e card de compartilhamento (WhatsApp, Facebook, Instagram) -->
+    <meta name="description" content="Landing pages, análise de negócio e consultoria de anúncios para pequenos negócios que querem vender com organização.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lucas Henrique | Marketing com Dados">
+    <meta property="og:description" content="Seu negócio vende. Mas você sabe por quê? Landing pages, análise e consultoria de anúncios.">
+    <meta property="og:image" content="img/og-logo.png">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <!-- Fontes do manual de marca: Poppins (principal) e Lora (destaques em itálico) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Avisa o CSS que o JavaScript está ligado. Só assim os elementos começam
+         escondidos para "aparecer" na rolagem. Sem JS, tudo fica visível. -->
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+    <!-- Barra de progresso de leitura (preenchida pelo script.js conforme a rolagem) -->
+    <div class="progresso" id="progresso" aria-hidden="true"></div>
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <header class="topo">
+        <div class="container topo-inner">
+            <a href="#inicio" class="topo-logo" aria-label="Lucas Henrique, voltar ao início">
+                <img src="img/logo-horizontal.svg" alt="Lucas Henrique · Marketing com Dados" width="200" height="45">
+            </a>
+            <nav class="topo-nav" aria-label="Menu principal">
+                <a href="#servicos">Serviços</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#trabalhos">Trabalhos</a>
+                <a href="#duvidas">Dúvidas</a>
+            </nav>
+            <a href="#contato" class="btn btn-pequeno">Fale comigo</a>
+        </div>
+    </header>
+
+    <main id="inicio">
+
+        <!-- ===================== HERO =====================
+             O elemento marcante do site: um "diagnóstico" ao vivo.
+             As barras crescem, a lupa passa por cima e para no sábado (barra amarela),
+             e aparece o insight. Isso mostra, em 3 segundos, o que você faz. -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-texto" data-revelar>
+                    <h1>Seu negócio vende. Mas você sabe por quê?</h1>
+                    <p class="hero-sub">Eu olho os números do seu negócio, encontro o que está funcionando e monto a página e a estratégia de anúncio em cima disso. Para pequeno negócio que quer vender com organização.</p>
+                    <div class="hero-acoes">
+                        <a href="#contato" class="btn">Quero um diagnóstico</a>
+                        <a href="#servicos" class="link-sublinhado">Ver o que eu faço</a>
+                    </div>
+                </div>
+
+                <figure class="diagnostico" aria-label="Exemplo de diagnóstico: vendas da semana de uma doceria">
+                    <figcaption class="diag-titulo">Vendas da semana · Doceria do bairro <span>(exemplo)</span></figcaption>
+                    <svg class="diag-grafico" viewBox="0 0 420 240" role="img" aria-labelledby="diag-desc">
+                        <desc id="diag-desc">Gráfico de barras de segunda a domingo. Sábado é o dia com mais vendas, o dobro da média.</desc>
+                        <!-- linha de base do gráfico -->
+                        <line x1="10" y1="210" x2="410" y2="210" class="eixo"/>
+                        <!-- barras: a altura é aplicada pelo CSS (variável --h) para animar o crescimento -->
+                        <g class="barras">
+                            <rect x="22"  y="10" width="38" height="200" rx="6" style="--h:.34"/>
+                            <rect x="78"  y="10" width="38" height="200" rx="6" style="--h:.30"/>
+                            <rect x="134" y="10" width="38" height="200" rx="6" style="--h:.38"/>
+                            <rect x="190" y="10" width="38" height="200" rx="6" style="--h:.42"/>
+                            <rect x="246" y="10" width="38" height="200" rx="6" style="--h:.55"/>
+                            <rect x="302" y="10" width="38" height="200" rx="6" style="--h:.92" class="destaque"/>
+                            <rect x="358" y="10" width="38" height="200" rx="6" style="--h:.48"/>
+                        </g>
+                        <g class="dias">
+                            <text x="41" y="230">seg</text><text x="97" y="230">ter</text><text x="153" y="230">qua</text>
+                            <text x="209" y="230">qui</text><text x="265" y="230">sex</text><text x="321" y="230">sáb</text><text x="377" y="230">dom</text>
+                        </g>
+                        <!-- a lupa (mesmo desenho do logo), que "analisa" as barras -->
+                        <g class="lupa">
+                            <circle cx="0" cy="0" r="30" class="lupa-anel"/>
+                            <line x1="21" y1="21" x2="42" y2="42" class="lupa-cabo"/>
+                        </g>
+                    </svg>
+                    <p class="diag-insight">
+                        <strong>Sábado vende o dobro.</strong>
+                        O anúncio está rodando de segunda a sexta. Trocar os dias custa zero e pode mudar o mês.
+                    </p>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ===================== DORES =====================
+             Frases que o dono do negócio fala. Usamos a Lora itálica, porque é "a voz dele". -->
+        <section class="dores">
+            <div class="container">
+                <h2>Se alguma dessas frases já saiu da sua boca, a gente precisa conversar</h2>
+                <ul class="dores-lista" data-revelar>
+                    <li>“Eu posto todo dia, mas não sei se isso vende.”</li>
+                    <li>“Já impulsionei post e não vi retorno nenhum.”</li>
+                    <li>“O cliente pergunta onde ver meus produtos e eu só tenho o status do WhatsApp.”</li>
+                    <li>“Não sei quanto ganho em cada venda.”</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== SERVIÇOS =====================
+             Em vez de 3 cards iguais, cada serviço é uma linha: nome, o problema que resolve,
+             o que vem incluso e para quem é. Fica mais fácil de comparar. -->
+        <section class="secao" id="servicos">
+            <div class="container">
+                <h2>O que eu faço pelo seu negócio</h2>
+                <p class="secao-intro">Três serviços que se completam. Você pode começar por qualquer um.</p>
+
+                <div class="servicos" data-revelar>
+                    <article class="servico">
+                        <div class="servico-cabeca">
+                            <h3>Landing page</h3>
+                            <p class="servico-resolve">Um endereço na internet que mostra o seu trabalho e transforma visita em contato.</p>
+                        </div>
+                        <ul class="servico-inclui">
+                            <li>Conversa para entender o seu negócio (briefing)</li>
+                            <li>Texto escrito pensando no seu cliente</li>
+                            <li>Visual que funciona bem no celular</li>
+                            <li>Página no ar na GreatPages, fácil de editar depois</li>
+                        </ul>
+                        <p class="servico-para"><strong>Ideal para</strong> quem vende pelo WhatsApp e Instagram e ainda não tem onde mostrar os produtos direito.</p>
+                    </article>
+
+                    <article class="servico">
+                        <div class="servico-cabeca">
+                            <h3>Análise de negócio e dados</h3>
+                            <p class="servico-resolve">Organizo os números que você já tem e mostro onde está o dinheiro e onde ele está escapando.</p>
+                        </div>
+                        <ul class="servico-inclui">
+                            <li>Levantamento de vendas, custos e canais</li>
+                            <li>Diagnóstico com as 3 prioridades do momento</li>
+                            <li>Planilha ou painel simples para você acompanhar</li>
+                            <li>Reunião para explicar tudo sem “tecniquês”</li>
+                        </ul>
+                        <p class="servico-para"><strong>Ideal para</strong> quem já vende, mas não sabe qual produto, dia ou canal dá mais resultado.</p>
+                    </article>
+
+                    <article class="servico">
+                        <div class="servico-cabeca">
+                            <h3>Consultoria de anúncios</h3>
+                            <p class="servico-resolve">Monto a estratégia e ensino você ou sua equipe a rodar os anúncios com método.</p>
+                        </div>
+                        <ul class="servico-inclui">
+                            <li>Público, oferta e estrutura de campanha</li>
+                            <li>Quais números acompanhar e o que eles significam</li>
+                            <li>Revisões quinzenais dos resultados</li>
+                            <li>Você continua no controle da sua conta</li>
+                        </ul>
+                        <p class="servico-para"><strong>Ideal para</strong> quem já anuncia, ou quer começar, e não quer gastar no escuro.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== QUAL SERVIÇO É PARA VOCÊ? =====================
+             Ideia tirada da referência: ajudar a pessoa a escolher.
+             Aqui é interativo: ela clica na situação dela e vê a recomendação.
+             O botão já deixa o serviço escolhido marcado no formulário. -->
+        <section class="secao secao-nevoa" id="escolher">
+            <div class="container escolher-grid">
+                <div>
+                    <h2>Não sabe por onde começar?</h2>
+                    <p class="secao-intro">Escolha a frase que mais parece com a sua situação.</p>
+                    <div class="escolher-opcoes" role="group" aria-label="Situações">
+                        <button type="button" class="opcao" data-servico="lp" aria-pressed="false">Ainda não tenho onde mostrar meus produtos</button>
+                        <button type="button" class="opcao" data-servico="analise" aria-pressed="false">Eu vendo, mas não sei o que funciona</button>
+                        <button type="button" class="opcao" data-servico="anuncios" aria-pressed="false">Já anuncio e não vejo retorno</button>
+                    </div>
+                </div>
+                <!-- aria-live="polite": o leitor de tela anuncia quando a recomendação muda -->
+                <div class="recomendacao" id="recomendacao" aria-live="polite">
+                    <p class="recomendacao-vazia">Sua recomendação aparece aqui.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== COMO FUNCIONA ===================== -->
+        <section class="secao secao-escura" id="como-funciona">
+            <div class="container">
+                <h2>Como funciona</h2>
+                <p class="secao-intro">Sem correria e sem achismo. Cada etapa tem um motivo.</p>
+                <ol class="etapas" data-revelar>
+                    <li>
+                        <h3>Conversa</h3>
+                        <p>Você me conta do seu negócio e do que quer resolver. Eu mando umas perguntas simples para organizar as ideias.</p>
+                    </li>
+                    <li>
+                        <h3>Diagnóstico</h3>
+                        <p>Olho os seus números e o que você já faz hoje. Antes de qualquer coisa, a gente entende onde está o problema.</p>
+                    </li>
+                    <li>
+                        <h3>Entrega</h3>
+                        <p>Página, análise ou estratégia pronta, com prazo combinado no começo. Você aprova antes de ir para o ar.</p>
+                    </li>
+                    <li>
+                        <h3>Acompanhamento</h3>
+                        <p>Olhamos os resultados juntos e ajustamos. Se fizer sentido, seguimos com a manutenção mensal.</p>
+                    </li>
+                </ol>
+                <blockquote class="frase-marca">“Antes de investir em anúncio, vamos ver se a casa está arrumada.”</blockquote>
+            </div>
+        </section>
+
+        <!-- ===================== TRABALHOS ===================== -->
+        <section class="secao" id="trabalhos">
+            <div class="container trabalhos-grid" data-revelar>
+                <div class="trabalho-texto">
+                    <h2>Um trabalho recente</h2>
+                    <h3>Doce Renda</h3>
+                    <p>Landing page para captar pessoas interessadas em aprender a fazer e vender doces caseiros. Página pensada para o celular, com formulário, medição de origem dos contatos e página de obrigado.</p>
+                    <ul class="tags">
+                        <li>Landing page</li><li>Captação de contatos</li><li>Mobile</li>
+                    </ul>
+                    <a href="https://lucashenrique089.github.io/lp-doces/" target="_blank" rel="noopener" class="link-sublinhado">Abrir a página</a>
+                </div>
+                <!-- Moldura de navegador com a página real dentro (iframe).
+                     O iframe é uma "janela" que mostra outro site dentro deste. -->
+                <div class="navegador" aria-hidden="true">
+                    <div class="navegador-barra"><i></i><i></i><i></i><span>lucashenrique089.github.io/lp-doces</span></div>
+                    <div class="navegador-tela">
+                        <iframe src="https://lucashenrique089.github.io/lp-doces/" title="Prévia da landing page Doce Renda" loading="lazy" tabindex="-1"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== SOBRE ===================== -->
+        <section class="secao secao-nevoa" id="sobre">
+            <div class="container sobre-grid" data-revelar>
+                <!-- TROQUE: coloque sua foto em img/foto-lucas.jpg e troque o src abaixo -->
+                <div class="sobre-foto">
+                    <img src="img/simbolo.svg" alt="" width="200" height="200">
+                </div>
+                <div>
+                    <h2>Prazer, Lucas Henrique</h2>
+                    <p>Trabalho com marketing há 3 anos e uso análise de dados no dia a dia para entender o que faz um negócio vender. Já vi muita empresa gastar com anúncio sem saber se estava dando retorno, e muito produto bom ficar escondido no status do WhatsApp.</p>
+                    <p>Meu trabalho é juntar as duas pontas: <strong>números claros</strong> e <strong>uma comunicação que o seu cliente entende</strong>. Falo a língua do pequeno negócio, sem fórmula mágica e sem promessa de lucro garantido.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== DÚVIDAS =====================
+             <details> e <summary> criam o efeito de abrir e fechar sem precisar de JavaScript. -->
+        <section class="secao" id="duvidas">
+            <div class="container container-estreito">
+                <h2>Dúvidas comuns</h2>
+                <details>
+                    <summary>Quanto custa?</summary>
+                    <p>Depende do tamanho do que você precisa. Depois da primeira conversa, eu te mando uma proposta com valor fechado e prazo. Sem surpresa no meio do caminho.</p>
+                </details>
+                <details>
+                    <summary>Quanto tempo leva para a página ficar pronta?</summary>
+                    <p>Uma landing page simples costuma ficar pronta em 7 a 10 dias, contando da entrega do briefing até a página no ar.</p>
+                </details>
+                <details>
+                    <summary>Preciso pagar alguma plataforma?</summary>
+                    <p>Sim. A página fica hospedada na GreatPages, e o plano é contratado no seu nome. Assim a página é sua de verdade. Eu te explico qual plano faz sentido antes de começar.</p>
+                </details>
+                <details>
+                    <summary>Você cuida dos meus anúncios?</summary>
+                    <p>Meu foco é a consultoria: eu monto a estratégia e acompanho os resultados, e você ou sua equipe executam. Gestão completa de anúncios só em casos específicos, com planejamento e contrato mínimo.</p>
+                </details>
+                <details>
+                    <summary>E se eu quiser mudar algo depois que a página estiver no ar?</summary>
+                    <p>Existe um plano de manutenção mensal com alterações inclusas, como trocar fotos, preços e promoções. Se preferir, também te ensino a fazer as mudanças simples sozinho.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ===================== CONTATO =====================
+             O formulário monta uma mensagem e abre o WhatsApp com ela pronta.
+             Não precisa de servidor: o JavaScript (script.js) faz tudo no navegador. -->
+        <section class="secao secao-escura" id="contato">
+            <div class="container contato-grid" data-revelar>
+                <div>
+                    <h2>Vamos conversar sobre o seu negócio?</h2>
+                    <p class="secao-intro">Preencha os campos e o WhatsApp abre com a sua mensagem pronta. Eu respondo em até 1 dia útil.</p>
+                    <p class="contato-alt">Prefere o Instagram? <a href="https://www.instagram.com/lhmarketing2025/" target="_blank" rel="noopener">Me chama no direct</a>.</p>
+                </div>
+
+                <form id="form-contato" class="form" novalidate>
+                    <div class="campo">
+                        <label for="nome">Seu nome</label>
+                        <input type="text" id="nome" name="nome" autocomplete="given-name" required>
+                    </div>
+                    <div class="campo">
+                        <label for="negocio">Tipo de negócio</label>
+                        <select id="negocio" name="negocio" required>
+                            <option value="">Escolha uma opção</option>
+                            <option>Alimentação (doces, marmitas, lanches)</option>
+                            <option>Beleza e estética</option>
+                            <option>Moda e acessórios</option>
+                            <option>Serviços (oficina, reformas, aulas)</option>
+                            <option>Loja ou comércio local</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="interesse">No que posso te ajudar?</label>
+                        <select id="interesse" name="interesse" required>
+                            <option value="">Escolha uma opção</option>
+                            <option>Landing page</option>
+                            <option>Análise do meu negócio</option>
+                            <option>Consultoria de anúncios</option>
+                            <option>Ainda não sei, quero conversar</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="mensagem">Conte rapidinho sobre o seu negócio <span class="opcional">(opcional)</span></label>
+                        <textarea id="mensagem" name="mensagem" rows="3" maxlength="500"></textarea>
+                    </div>
+                    <div class="campo-check">
+                        <input type="checkbox" id="lgpd" name="lgpd" required>
+                        <label for="lgpd">Concordo em ser contatado sobre este pedido. <a href="politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a></label>
+                    </div>
+                    <!-- Mensagem de erro aparece aqui (role="alert" faz o leitor de tela anunciar) -->
+                    <p class="form-erro" id="form-erro" role="alert"></p>
+                    <button type="submit" class="btn btn-cheio">Enviar pelo WhatsApp</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-inner">
+            <img src="img/logo-horizontal-negativo.svg" alt="Lucas Henrique · Marketing com Dados" width="180" height="40">
+            <p>© 2026 Lucas Henrique. <a href="politica-privacidade.html">Política de Privacidade</a></p>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp (o número é configurado no script.js) -->
+    <a href="#" class="whats-flutuante" id="whats-flutuante" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.3.6 4.5 1.8 6.4L3.2 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.1-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.1 9.9 10 5.2 16 5.2s10.8 4.7 10.8 10.6S22 26.1 16 26.1zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
